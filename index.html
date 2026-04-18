@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Amal Nath – Procurement & Business Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --steel: #1b2d3e;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --cream: #f5f0e8;
+    --muted: #8a9bb0;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 48px;
+    background: rgba(13,27,42,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold); letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { width: 24px; height: 1.5px; background: var(--cream); display: block; }
+  #mobile-nav { display: none; position: fixed; top: 58px; left: 0; right: 0; z-index: 99; background: rgba(13,27,42,0.98); padding: 20px 24px; flex-direction: column; gap: 18px; border-bottom: 1px solid rgba(201,168,76,0.15); }
+  #mobile-nav.open { display: flex; }
+  #mobile-nav a { color: var(--muted); text-decoration: none; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+
+  #about { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 60%), linear-gradient(135deg, #0d1b2a 0%, #1b2d3e 100%); }
+  .hero-grid { position: absolute; inset: 0; z-index: 0; opacity: 0.03; background-image: linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; z-index: 1; max-width: 720px; }
+  .hero-tag { display: inline-block; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 6px 16px; border-radius: 2px; margin-bottom: 28px; animation: fadeUp 0.8s ease both; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 8vw, 88px); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 8px; animation: fadeUp 0.8s ease 0.1s both; }
+  .hero-name span { color: var(--gold); }
+  .hero-title { font-size: 14px; font-weight: 300; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 32px; animation: fadeUp 0.8s ease 0.2s both; }
+  .hero-summary { font-size: 15px; line-height: 1.9; color: #b0bec5; max-width: 580px; margin-bottom: 40px; animation: fadeUp 0.8s ease 0.3s both; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.4s both; }
+  .btn-primary { padding: 14px 32px; background: var(--gold); color: var(--navy); text-decoration: none; font-weight: 500; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { padding: 14px 32px; border: 1px solid rgba(201,168,76,0.5); color: var(--gold); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: all 0.3s; }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 48px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(201,168,76,0.15); animation: fadeUp 0.8s ease 0.5s both; flex-wrap: wrap; }
+  .hero-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  section { padding: 90px 48px; }
+  .section-inner { max-width: 980px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 5vw, 46px); font-weight: 300; color: var(--white); margin-bottom: 48px; position: relative; padding-bottom: 20px; }
+  .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 48px; height: 1px; background: var(--gold); }
+
+  #skills { background: var(--steel); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .skill-card { background: rgba(13,27,42,0.6); border: 1px solid rgba(201,168,76,0.15); border-radius: 4px; padding: 26px 22px; transition: border-color 0.3s, transform 0.3s; }
+  .skill-card:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-4px); }
+  .skill-card-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill-tag { font-size: 12px; color: var(--muted); background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.15); padding: 4px 11px; border-radius: 2px; }
+  .software-list { display: flex; flex-direction: column; gap: 13px; margin-top: 4px; }
+  .sw-row { display: flex; align-items: center; gap: 12px; }
+  .sw-name { font-size: 12px; color: var(--muted); width: 70px; flex-shrink: 0; }
+  .sw-bar-bg { flex: 1; height: 4px; background: rgba(201,168,76,0.12); border-radius: 2px; }
+  .sw-bar-fill { height: 4px; background: var(--gold); border-radius: 2px; }
+
+  #experience { background: var(--navy); }
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: rgba(201,168,76,0.2); }
+  .timeline-item { position: relative; margin-bottom: 52px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -37px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); border: 2px solid var(--navy); box-shadow: 0 0 0 4px rgba(201,168,76,0.18); }
+  .timeline-dot.current { background: var(--gold-light); box-shadow: 0 0 0 4px rgba(232,201,106,0.25), 0 0 12px rgba(201,168,76,0.4); }
+  .timeline-date { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 7px; }
+  .current-badge { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); padding: 3px 10px; border-radius: 2px; margin-left: 10px; vertical-align: middle; }
+  .timeline-role { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--white); margin-bottom: 3px; }
+  .timeline-company { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .timeline-company span { color: var(--gold-light); font-weight: 500; }
+  .timeline-projects { font-size: 12px; color: rgba(138,155,176,0.7); margin-bottom: 14px; font-style: italic; border-left: 2px solid rgba(201,168,76,0.2); padding-left: 12px; line-height: 1.7; }
+  .timeline-desc { color: #8a9bb0; font-size: 14px; line-height: 1.8; }
+  .timeline-desc ul { padding-left: 16px; }
+  .timeline-desc li { margin-bottom: 5px; }
+  .duty-group { margin-bottom: 16px; }
+  .duty-group-title { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(201,168,76,0.8); margin-bottom: 7px; }
+
+  #education { background: var(--steel); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .edu-card { background: rgba(13,27,42,0.5); border: 1px solid rgba(201,168,76,0.15); border-radius: 4px; padding: 30px 26px; transition: border-color 0.3s, transform 0.3s; }
+  .edu-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+  .edu-degree { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--white); margin-bottom: 4px; }
+  .edu-field { font-size: 13px; color: var(--gold); margin-bottom: 12px; }
+  .edu-school { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  .edu-year { font-size: 11px; color: rgba(138,155,176,0.55); letter-spacing: 1px; }
+
+  #certifications { background: var(--navy); }
+  .cert-list { display: flex; flex-direction: column; gap: 14px; }
+  .cert-item { display: flex; align-items: center; gap: 20px; background: rgba(27,45,62,0.5); border: 1px solid rgba(201,168,76,0.12); border-radius: 4px; padding: 20px 24px; transition: border-color 0.3s, transform 0.3s; }
+  .cert-item:hover { border-color: rgba(201,168,76,0.35); transform: translateX(4px); }
+  .cert-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 17px; }
+  .cert-name { font-size: 15px; color: var(--white); font-weight: 400; }
+  .cert-issuer { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  #contact { background: var(--steel); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .contact-intro { color: #8a9bb0; font-size: 15px; margin-bottom: 36px; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link { display: flex; align-items: center; gap: 14px; color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link-icon { width: 36px; height: 36px; border-radius: 2px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+  .form-input, .form-textarea { background: rgba(13,27,42,0.6); border: 1px solid rgba(201,168,76,0.2); color: var(--cream); padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; border-radius: 2px; outline: none; transition: border-color 0.3s; }
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+  .form-btn { padding: 13px 30px; background: var(--gold); color: var(--navy); border: none; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.3s, transform 0.2s; align-self: flex-start; }
+  .form-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  footer { text-align: center; padding: 36px; border-top: 1px solid rgba(201,168,76,0.1); color: rgba(138,155,176,0.5); font-size: 13px; }
+  footer span { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    #about { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .hero-stats { gap: 24px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .timeline { padding-left: 22px; }
+    .timeline-dot { left: -27px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AN</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div id="mobile-nav">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="#experience" onclick="closeMobileNav()">Experience</a>
+  <a href="#education" onclick="closeMobileNav()">Education</a>
+  <a href="#certifications" onclick="closeMobileNav()">Certifications</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="about">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Procurement &amp; Business Engineer · Kuwait City</div>
+    <h1 class="hero-name">Amal <span>Nath</span></h1>
+    <p class="hero-title">EPC Projects · Strategic Sourcing · Contract Management · Cost Control</p>
+    <p class="hero-summary">
+      Detail-oriented Mechanical Engineer with over 10 years of experience in EPC projects across Kuwait and India. Expert at establishing primary interfaces with vendors and contractors for contract negotiations. Strong business acumen in sourcing materials and components within firm budgets, with deep expertise in techno-commercial evaluation, procurement coordination, and cross-functional project delivery.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="https://www.linkedin.com/in/amal-nath-702788139" target="_blank" class="btn-outline">LinkedIn Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Years Experience</div></div>
+      <div><div class="hero-stat-num">6</div><div class="hero-stat-label">Companies</div></div>
+      <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Major Projects</div></div>
+      <div><div class="hero-stat-num">2</div><div class="hero-stat-label">Countries</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label reveal">Core Competencies</div>
+    <h2 class="section-title reveal">Skills &amp; Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Procurement</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Strategic Sourcing</span>
+          <span class="skill-tag">Vendor Evaluation</span>
+          <span class="skill-tag">Contract Negotiation</span>
+          <span class="skill-tag">Bid Evaluation</span>
+          <span class="skill-tag">RFQ Management</span>
+          <span class="skill-tag">Inventory Tracking</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Mechanical Engineering</span>
+          <span class="skill-tag">Blueprint Reading</span>
+          <span class="skill-tag">Piping &amp; Valves</span>
+          <span class="skill-tag">Technical Drawings</span>
+          <span class="skill-tag">O&amp;M Manuals</span>
+          <span class="skill-tag">QA/QC</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Project Management</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Project Planning</span>
+          <span class="skill-tag">Cost Estimation</span>
+          <span class="skill-tag">BOQ Preparation</span>
+          <span class="skill-tag">Budgeting</span>
+          <span class="skill-tag">Time Management</span>
+          <span class="skill-tag">Material Req. Planning</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Commercial &amp; Finance</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cost Analysis</span>
+          <span class="skill-tag">Techno-Commercial Eval.</span>
+          <span class="skill-tag">Variation Orders</span>
+          <span class="skill-tag">Claims Preparation</span>
+          <span class="skill-tag">LC &amp; Payments</span>
+          <span class="skill-tag">Financial Forecasting</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English (Professional)</span>
+          <span class="skill-tag">Arabic (Working)</span>
+          <span class="skill-tag">Malayalam (Native)</span>
+          <span class="skill-tag">Hindi (Working)</span>
+          <span class="skill-tag">Tamil (Elementary)</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Software</div>
+        <div class="software-list">
+          <div class="sw-row"><span class="sw-name">MS Office</span><div class="sw-bar-bg"><div class="sw-bar-fill" style="width:100%"></div></div></div>
+          <div class="sw-row"><span class="sw-name">AutoCAD</span><div class="sw-bar-bg"><div class="sw-bar-fill" style="width:60%"></div></div></div>
+          <div class="sw-row"><span class="sw-name">SAP</span><div class="sw-bar-bg"><div class="sw-bar-fill" style="width:40%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label reveal">Career Journey</div>
+    <h2 class="section-title reveal">Work Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot current"></div>
+        <div class="timeline-date">August 2024 – Present <span class="current-badge">Current Role</span></div>
+        <div class="timeline-role">Business Engineer</div>
+        <div class="timeline-company"><span>Al-Hashemi Construction Group</span> · Kuwait</div>
+        <div class="timeline-desc">
+          <div class="duty-group">
+            <div class="duty-group-title">Techno-Commercial Evaluation</div>
+            <ul>
+              <li>Led technical and commercial evaluation of vendor proposals for EPC projects, ensuring alignment with project specifications and budget constraints.</li>
+              <li>Conducted cost-benefit analysis and lifecycle costing to support procurement decisions.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Procurement &amp; Supply Chain Coordination</div>
+            <ul>
+              <li>Coordinated with suppliers and manufacturers for RFQs, negotiations, and order finalization.</li>
+              <li>Managed vendor relationships to ensure timely delivery, compliance, and quality assurance.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Project Cost Control &amp; Budgeting</div>
+            <ul>
+              <li>Monitored project costs against budget, identifying deviations and recommending corrective actions.</li>
+              <li>Prepared cost estimates, BOQs, and financial forecasts for ongoing and upcoming projects.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Contract Management</div>
+            <ul>
+              <li>Reviewed and interpreted contracts, identifying risks, obligations, and claims opportunities.</li>
+              <li>Assisted in variation orders, claims preparation, and dispute resolution support.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Cross-Functional Coordination</div>
+            <ul>
+              <li>Acted as a bridge between engineering, procurement, and finance teams to ensure project alignment.</li>
+              <li>Coordinated with consultants, clients, and internal stakeholders for approvals and technical clarifications.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Vendor &amp; Market Analysis</div>
+            <ul>
+              <li>Conducted market research to identify competitive suppliers and optimize sourcing strategies.</li>
+              <li>Benchmarked pricing and technical specifications to improve procurement efficiency.</li>
+            </ul>
+          </div>
+          <div class="duty-group">
+            <div class="duty-group-title">Documentation &amp; Reporting</div>
+            <ul>
+              <li>Prepared technical submittals, commercial reports, and project progress documentation.</li>
+              <li>Maintained accurate records for procurement, contracts, and project milestones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">March 2023 – August 2024 · 1 yr 6 mos</div>
+        <div class="timeline-role">Procurement Engineer</div>
+        <div class="timeline-company"><span>China Construction Industrial &amp; Energy Engineering Group Co. Ltd.</span> · Kuwait</div>
+        <div class="timeline-projects">
+          Projects: Academic Support Facilities, Sabah Al-Salem University, Shadadiyah · Construction Operation &amp; Maintenance of Administration Facilities, Shadadiyah
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Analyzed project design and specifications to find suitable materials and equipment.</li>
+            <li>Reviewed and evaluated received bids to select the most suitable supplier or contractor.</li>
+            <li>Conducted negotiations with selected vendors to finalize terms, pricing, and delivery schedules.</li>
+            <li>Identified piping segments and estimated quantities; prepared variation orders.</li>
+            <li>Prepared Project Operation &amp; Maintenance Manuals.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">July 2021 – March 2023 · 1 yr 9 mos</div>
+        <div class="timeline-role">Procurement Engineer</div>
+        <div class="timeline-company"><span>Enshaat Al-Sayer General Trading &amp; Contracting Company</span> · Kuwait</div>
+        <div class="timeline-projects">
+          Projects: Supply &amp; installation of pumps and pipes for GAAF water flooding solution, Sabah Al Ahmad · South Kuwait Excavation, Transportation &amp; Remediation (SKETR-II) – Zone A · Retrofit of Existing Personnel Bunkers with U.S. Army Corps of Engineers (Middle East)
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Evaluated project design and specifications to identify appropriate materials and equipment.</li>
+            <li>Examined and assessed received bids to choose the most appropriate supplier or contractor.</li>
+            <li>Negotiated with vendors to finalize contract terms, pricing, and delivery schedules.</li>
+            <li>Managed supplier performance in quality, cost, delivery, and responsiveness.</li>
+            <li>Prepared payment certificates, LCs, and payments for purchased products.</li>
+            <li>Troubleshot technical issues related to supplied products.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">November 2016 – July 2021 · 4 yrs 9 mos</div>
+        <div class="timeline-role">Procurement Engineer</div>
+        <div class="timeline-company"><span>China State Construction Engineering Corp. (Middle East)</span> · Kuwait</div>
+        <div class="timeline-projects">
+          Project: Academic Support Facilities, Sabah Al-Salem University, Shadadiyah, Kuwait
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Researched and analyzed customer design proposals, specifications, and manuals to evaluate feasibility, cost, and maintenance requirements.</li>
+            <li>Estimated costs for engineering projects and prepared contract documents for purchased products.</li>
+            <li>Fulfilled contractor requirements through negotiation, specification compliance, and contract award.</li>
+            <li>Analyzed market strategies and selected the most convenient suppliers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">August 2015 – March 2016 · 8 mos</div>
+        <div class="timeline-role">Mechanical Engineer</div>
+        <div class="timeline-company"><span>Indian Oil Corporation Limited</span> · Bangalore, India</div>
+        <div class="timeline-projects">
+          Project: New product pipeline laying, tank farm, pump house with manifold, TLF sheds, MS structural works, and pump installation at Devanagonthi Terminal, Karnataka
+        </div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Read and interpreted blueprints, technical drawings, schematics, and computer-generated reports.</li>
+            <li>Oversaw installation, operation, and maintenance of valves per specifications.</li>
+            <li>Scheduled projects in logical steps and budgeted time to meet deadlines.</li>
+            <li>Conferred with supervisory personnel, contractors, and design professionals to resolve construction issues.</li>
+            <li>Obtained necessary permits and requisitioned supplies to complete projects.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April 2014 – May 2015 · 1 yr 2 mos</div>
+        <div class="timeline-role">QA/QC Engineer</div>
+        <div class="timeline-company"><span>Reliance Industries Limited</span> · Jamnagar, India</div>
+        <div class="timeline-desc">
+          <ul>
+            <li>Supervised, coordinated, and scheduled construction activities to ensure specification compliance.</li>
+            <li>Read specifications and blueprints to determine construction requirements and plan procedures.</li>
+            <li>Inspected work progress and construction sites to ensure all specifications were met.</li>
+            <li>Estimated material and worker requirements; analyzed production problems and recommended solutions.</li>
+            <li>Recorded personnel, production, and operational data on specified reports.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label reveal">Academic Background</div>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">B.Tech</div>
+        <div class="edu-field">Mechanical Engineering</div>
+        <div class="edu-school">Mahatma Gandhi University, Kottayam</div>
+        <div class="edu-year">2011 – 2014</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">Diploma</div>
+        <div class="edu-field">Mechanical Engineering</div>
+        <div class="edu-school">Board of Technical Education, Govt. of Kerala</div>
+        <div class="edu-year">2008 – 2011</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">Higher Secondary</div>
+        <div class="edu-field">Science</div>
+        <div class="edu-school">Gurukulam H S Edakkulam</div>
+        <div class="edu-year">2005 – 2008</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label reveal">Professional Development</div>
+    <h2 class="section-title reveal">Certifications</h2>
+    <div class="cert-list">
+      <div class="cert-item reveal">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Project Management Foundations: Requirements</div>
+          <div class="cert-issuer">LinkedIn Learning</div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Process Piping and Quality Control Engineering</div>
+          <div class="cert-issuer">Professional Certification</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Contact Me</h2>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="contact-intro">I'm open to new opportunities, project collaborations, and professional conversations. Feel free to reach out via any of the channels below or send a direct message.</p>
+        <div class="contact-links">
+          <a href="mailto:amalnath.reji@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>amalnath.reji@gmail.com
+          </a>
+          <a href="tel:+96566358115" class="contact-link">
+            <div class="contact-link-icon">📞</div>+965 66358115
+          </a>
+          <a href="https://www.linkedin.com/in/amal-nath-702788139" target="_blank" class="contact-link">
+            <div class="contact-link-icon">in</div>linkedin.com/in/amal-nath-702788139
+          </a>
+          <div class="contact-link">
+            <div class="contact-link-icon">📍</div>Jaleeb Al Shouwaikh, Kuwait City, Kuwait
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Smith" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <input type="email" class="form-input" placeholder="john@example.com" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Your message here..."></textarea>
+          </div>
+          <button type="submit" class="form-btn">Send Message</button>
+          <p id="form-msg" style="font-size:13px;color:var(--gold);display:none;margin-top:8px;">✓ Message sent! I'll get back to you soon.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Amal Nath</span> · Procurement &amp; Business Engineer · Kuwait City</p>
+  <p style="margin-top:6px;font-size:12px;">
+    <a href="https://www.linkedin.com/in/amal-nath-702788139" target="_blank" style="color:var(--gold);text-decoration:none;">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:amalnath.reji@gmail.com" style="color:var(--gold);text-decoration:none;">amalnath.reji@gmail.com</a>
+  </p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => obs.observe(r));
+
+  function toggleMobileNav() { document.getElementById('mobile-nav').classList.toggle('open'); }
+  function closeMobileNav() { document.getElementById('mobile-nav').classList.remove('open'); }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block'; e.target.reset();
+    setTimeout(() => msg.style.display = 'none', 5000);
+  }
+
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    links.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+  });
+</script>
+</body>
+</html>
