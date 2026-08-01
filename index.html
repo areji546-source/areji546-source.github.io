@@ -211,75 +211,6 @@
   }
 
 
-  /* GALLERY */
-  #gallery { background: var(--navy); }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .gallery-item { border-radius: 6px; overflow: hidden; }
-  .gallery-img-wrap {
-    position: relative; overflow: hidden;
-    aspect-ratio: 4/3;
-    border-radius: 6px;
-    border: 1px solid rgba(201,168,76,0.12);
-    cursor: pointer;
-  }
-  .gallery-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    display: block;
-  }
-  .gallery-img-wrap:hover img { transform: scale(1.07); }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.2) 50%, transparent 100%);
-    opacity: 0; transition: opacity 0.4s ease;
-    display: flex; align-items: flex-end; padding: 16px;
-  }
-  .gallery-img-wrap:hover .gallery-overlay { opacity: 1; }
-  .gallery-caption {
-    font-size: 12px; color: var(--cream); line-height: 1.5;
-    border-left: 2px solid var(--gold); padding-left: 10px;
-  }
-
-  /* LIGHTBOX */
-  #lightbox {
-    display: none; position: fixed; inset: 0; z-index: 300;
-    background: rgba(5,12,20,0.96);
-    align-items: center; justify-content: center; flex-direction: column;
-  }
-  #lightbox.open { display: flex; }
-  #lightbox img {
-    max-width: 90vw; max-height: 80vh;
-    border-radius: 4px; border: 1px solid rgba(201,168,76,0.2);
-    object-fit: contain;
-  }
-  #lightbox-caption {
-    margin-top: 16px; font-size: 13px; color: var(--muted);
-    text-align: center; max-width: 600px; line-height: 1.6;
-    border-left: 2px solid var(--gold); padding-left: 12px;
-  }
-  #lightbox-close {
-    position: absolute; top: 24px; right: 32px;
-    background: none; border: none; color: var(--muted);
-    font-size: 28px; cursor: pointer; transition: color 0.2s;
-    line-height: 1;
-  }
-  #lightbox-close:hover { color: var(--gold); }
-  #lightbox-nav {
-    display: flex; gap: 16px; margin-top: 20px;
-  }
-  .lb-btn {
-    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold); padding: 8px 20px; border-radius: 2px;
-    cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s;
-  }
-  .lb-btn:hover { background: rgba(201,168,76,0.2); }
-
   @media (max-width: 768px) {
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   }
@@ -310,7 +241,6 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
@@ -323,7 +253,6 @@
   <a href="#experience" onclick="closeMobileNav()">Experience</a>
   <a href="#education" onclick="closeMobileNav()">Education</a>
   <a href="#certifications" onclick="closeMobileNav()">Certifications</a>
-  <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
 </div>
 
@@ -622,6 +551,13 @@
       <div class="cert-item reveal">
         <div class="cert-icon">🏅</div>
         <div>
+          <div class="cert-name">Google Project Management Professional Certificate</div>
+          <div class="cert-issuer">Google · Coursera &nbsp;|&nbsp; July 2026 &nbsp;|&nbsp; 7 Courses &nbsp;|&nbsp; <a href="https://coursera.org/verify/professional-cert/2YUD7PMXLOUC" target="_blank" style="color:var(--gold);text-decoration:none;">Verify ↗</a></div>
+        </div>
+      </div>
+      <div class="cert-item reveal">
+        <div class="cert-icon">🏅</div>
+        <div>
           <div class="cert-name">Project Management Foundations: Requirements</div>
           <div class="cert-issuer">LinkedIn Learning</div>
         </div>
@@ -639,65 +575,6 @@
 
 
 
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-inner">
-    <div class="section-label reveal">In The Field</div>
-    <h2 class="section-title reveal">Project Gallery</h2>
-    <div class="gallery-grid">
-      
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo2.jpg" alt="Equipment inspection & testing on site, Kuwait" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">Equipment inspection & testing on site, Kuwait</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo1.jpg" alt="Site coordination meeting — China State Construction, Kuwait" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">Site coordination meeting — China State Construction, Kuwait</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo3.jpg" alt="Project team after successful delivery, Kuwait" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">Project team after successful delivery, Kuwait</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo6.jpg" alt="Team at China Construction Industrial & Energy Engineering, Kuwait" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">Team at China Construction Industrial & Energy Engineering, Kuwait</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo4.jpg" alt="HKTDC 'Partnering for Success' Business Forum, Kuwait — May 2025" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">HKTDC 'Partnering for Success' Business Forum, Kuwait — May 2025</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-item reveal">
-        <div class="gallery-img-wrap">
-          <img src="photos/photo5.jpg" alt="Networking at international business conference, Kuwait 2025" loading="lazy"/>
-          <div class="gallery-overlay">
-            <div class="gallery-caption">Networking at international business conference, Kuwait 2025</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -755,17 +632,6 @@
   </p>
 </footer>
 
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="lbClickOutside(event)">
-  <button id="lightbox-close" onclick="closeLightbox()">&#xd7;</button>
-  <img id="lb-img" src="" alt=""/>
-  <div id="lightbox-caption"></div>
-  <div id="lightbox-nav">
-    <button class="lb-btn" onclick="lbPrev()">&#8592; Prev</button>
-    <button class="lb-btn" onclick="lbNext()">Next &#8594;</button>
-  </div>
-</div>
 
 <!-- CV DOWNLOAD MODAL -->
 <div id="cv-modal-overlay" onclick="handleOverlayClick(event)">
@@ -899,43 +765,6 @@
         }).catch(() => {});
     } catch(e) {}
   })();
-
-  /* ── GALLERY LIGHTBOX ── */
-  const lbPhotos = [
-    {src:"photos/photo2.jpg", caption:"Equipment inspection & testing on site, Kuwait"},
-    {src:"photos/photo1.jpg", caption:"Site coordination meeting — China State Construction, Kuwait"},
-    {src:"photos/photo3.jpg", caption:"Project team after successful delivery, Kuwait"},
-    {src:"photos/photo6.jpg", caption:"Team at China Construction Industrial & Energy Engineering, Kuwait"},
-    {src:"photos/photo4.jpg", caption:"HKTDC 'Partnering for Success' Business Forum, Kuwait — May 2025"},
-    {src:"photos/photo5.jpg", caption:"Networking at international business conference, Kuwait 2025"}
-  ];
-  let lbIndex = 0;
-
-  function openLightbox(idx) {
-    lbIndex = idx;
-    document.getElementById('lb-img').src = lbPhotos[idx].src;
-    document.getElementById('lightbox-caption').textContent = lbPhotos[idx].caption;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function lbNext() { lbIndex = (lbIndex + 1) % lbPhotos.length; openLightbox(lbIndex); }
-  function lbPrev() { lbIndex = (lbIndex - 1 + lbPhotos.length) % lbPhotos.length; openLightbox(lbIndex); }
-  function lbClickOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') lbNext();
-    if (e.key === 'ArrowLeft') lbPrev();
-  });
-
-  // Attach click handlers to gallery items
-  document.querySelectorAll('.gallery-img-wrap').forEach((el, i) => {
-    el.addEventListener('click', () => openLightbox(i));
-  });
 
 </script>
 </body>
